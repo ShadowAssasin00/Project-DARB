@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<style>
+    body {
+        background-image: url('https://lh3.googleusercontent.com/B76DmlyXnN9Qh6Uasz5v2an3dNm4q72md40akU9VT7r-t6ht_Yp-VHaCTXK4Jwu0XwbhONLiv1wehFcpNbdWx0y2U8t9hZb_s5zBASwf');
+        background-size: 300px;
+    }   
+    #number-one {
+        position:absolute; 
+        left:150px;
+        top:90px
+
+    }
+    #number-two {
+        position:absolute; 
+        left:45px;
+        top:210px
+
+    }
+    #number-three {
+        position:absolute; 
+        left:155px;
+        top:210px
+
+    }    
+    #number-four {
+        position:absolute; 
+        left:45px;
+        top:276px
+
+    }    
+    #number-five {
+        position:absolute; 
+        left:165px;
+        top:276px
+
+    }    
+   
+    
+</style>
+<body>
+    <input type="file" onchange="get_content()" />
+
+    
+    <p id="number-one"></p>
+    <p id= "number-two"></p>
+    <p id= "number-three"></p>
+    <p id= "number-four"></p>
+    <p id= "number-five"></p>
+    
+</body>
+
+
+
+<script>
+
+    function get_content() {
+        const [file] = document.querySelector("input[type=file]").files;
+        const reader = new FileReader();
+
+        reader.readAsText(file);
+
+        reader.onload = function(){
+            read_content(reader.result)
+        };
+
+        reader.onerror = function(){
+            console.log(reader.error)
+        };
+    }
+
+    function read_content(data){
+        data = data.split("\r\n");
+        console.log(data);
+
+
+        let current_line = " ";
+
+
+        for (let i = 0; i < data.length - 1; i++){
+            current_line = data[i].replace("Amount: ", "").replace("Date: ", "").replace("Location: ", "").replace("Category: ", "");
+            current_line = current_line.split(",")
+            console.log(current_line)
+
+            document.getElementById("number-one").innerText = current_line[3].trim();
+            document.getElementById("number-two").innerText = current_line[1].trim();
+            document.getElementById("number-three").innerText = current_line[0].trim();
+        }
+    }
+        
+
+</script>

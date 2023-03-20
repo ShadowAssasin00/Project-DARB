@@ -1,0 +1,12 @@
+{
+  "name": "HCC PlugIn",
+  "id": "1219691207277538024",
+  "api": "1.0.0",
+  "main": "code.js",
+  "capabilities": [],
+  "enableProposedApi": false,
+  "editorType": [
+    "figma"
+  ],
+  "ui": "ui.html"
+}
